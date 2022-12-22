@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { Image, ImgItem } from './imageGalleryItem.styled';
-import Modal from 'components/Modal/Modal';
+import { Modal } from 'components/Modal/Modal';
 import PropTypes from 'prop-types';
 
 
@@ -8,7 +8,7 @@ export default function ImageGalleryItem({ webformatURL, largeImageURL }) {
   const [isModalOpen, setiIsModalOpen] = useState(false)
 
   const toggleModal = () => {
-    setiIsModalOpen(prevState => ({ isModalOpen: !prevState.isModalOpen }));
+    setiIsModalOpen(prevState => !prevState);
   };
 
     return (

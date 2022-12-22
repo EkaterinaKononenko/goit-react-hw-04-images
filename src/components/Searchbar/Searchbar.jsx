@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import {useState} from 'react';
 import {
   WrapSearchbar,
   Searchform,
@@ -10,20 +10,16 @@ import { FcSearch } from 'react-icons/fc';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default class Searchbar extends Component {
-  state = {
-    query: '',
+export default function Searchbar({onSubmit}) {
+const [query, setQuery] = useState('');
+
+ const handleInputChange = e => {
+    setQuery(e.currentTarget.value.toLowerCase());
   };
 
-  handleInputChange = e => {
-    this.setState({
-      query: e.currentTarget.value.toLowerCase(),
-    });
-  };
-
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    if (this.state.query.trim() === '') {
+    if (query.trim() === '') {
       return toast.error(
         'Field for searching is empty. Add information for request.',
         {
@@ -33,18 +29,17 @@ export default class Searchbar extends Component {
         }
       );
     }
-    this.props.onSubmit(this.state.query);
-    this.setState({ query: '' });
+    onSubmit(query);
   };
 
-  render() {
+
     return (
       <Formik>
         <WrapSearchbar>
-          <Searchform onSubmit={this.handleSubmit}>
+          <Searchform onSubmit={handleSubmit}>
             <SearchInput
-              onChange={this.handleInputChange}
-              value={this.state.query}
+              onChange={handleInputChange}
+              value={query}
               type="text"
               name="query"
               autoComplete="off"
@@ -59,4 +54,4 @@ export default class Searchbar extends Component {
       </Formik>
     );
   }
-}
+

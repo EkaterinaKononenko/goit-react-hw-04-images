@@ -1,25 +1,27 @@
-import {useEffect } from 'react';
+/*import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalOverlay, ModalWindow, ModalImg } from './Modal.styled';
 import PropTypes from 'prop-types';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Modal({ url, onClose }){
-   useEffect(() => {
-     const handleEscClose = e => {
-       if (e.code !== 'Escape') {
-         return;
-       }
-       onClose();
-     };
+export default class Modal extends Component {
+  handleEscClose = e => {
+    if (e.code !== 'Escape') {
+      return;
+    }
+    this.props.onClose();
+  };
 
-     window.addEventListener('keydown', handleEscClose);
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleEscClose);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleEscClose);
+  }
 
-     return () => {
-       window.removeEventListener('keydown', handleEscClose);
-     };
-   }, [onClose]);
+  render() {
+    const { url, onClose } = this.props;
 
     return createPortal(
       <ModalOverlay>
@@ -30,9 +32,9 @@ export function Modal({ url, onClose }){
       modalRoot
     );
   }
-
+}
 
 Modal.propTypes = {
   url: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
-};
+};*/
