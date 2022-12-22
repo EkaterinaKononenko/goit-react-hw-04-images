@@ -30,6 +30,7 @@ const [query, setQuery] = useState('');
       );
     }
     onSubmit(query);
+    setQuery('');
   };
 
 
