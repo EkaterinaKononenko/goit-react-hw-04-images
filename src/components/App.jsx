@@ -15,13 +15,13 @@ export default function App() {
   const [isLoading, setIsloading] = useState(false);
 
 
-  /* useEffect(() => {
+   /*useEffect(() => {
     if (!query) {
       setIsloading(true);
       try {
        const fetchData = async () => {
          const response = await fetchImages(query, page);
-         setHits(prevState => [...prevState.hits, ...response]);
+         setHits([...hits, ...response]);
          console.log(response);
          setIsloading(false);
 
@@ -47,7 +47,8 @@ export default function App() {
              autoClose: 3000,
              theme: 'colored',
            });
-       };
+        };
+        fetchData();
       } catch (error) {
         toast.error(
             'Something was wrong. Restart your browser and try again.',
@@ -116,7 +117,7 @@ export default function App() {
   };
 
   const loadMore = () => {
-    setHits(prevState => {return (prevState + 1)});
+    setPage(prevState => {return (prevState + 1)});
   };
   
 
