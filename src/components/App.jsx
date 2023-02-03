@@ -73,7 +73,7 @@ export default function App() {
 
     fetchImages(query, page)
       .then(response => {
-        setHits(prev => [...response, ...prev]);
+        setHits(prev => [...prev,...response]);
         setIsloading(false);
        
         if (response.length === 0) {
